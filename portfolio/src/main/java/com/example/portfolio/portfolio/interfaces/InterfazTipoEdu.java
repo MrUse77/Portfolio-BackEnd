@@ -4,17 +4,13 @@
  */
 package com.example.portfolio.portfolio.interfaces;
 
-import com.example.portfolio.portfolio.modelo.persona;
-import java.util.UUID;
+import com.example.portfolio.portfolio.modelo.tipo_educacion;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author agust
  */
-@Repository
-public interface InterfazPersona extends JpaRepository<persona, UUID> {
+public interface InterfazTipoEdu extends JpaRepository<tipo_educacion, Long> {
     
 }

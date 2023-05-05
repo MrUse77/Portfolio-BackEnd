@@ -45,21 +45,18 @@ public class EducacionController {
         return "La institucion fue eliminada correctamente";
     }
     @PutMapping("/educacion/editar/{id}")
-    public educacion editEducacion(@PathVariable Long id,
-                                   @RequestParam("NombreEducacion") String nuevoNombreEducacion,
-                                   @RequestParam("Titulo") String nuevoTitulo,
-                                   @RequestParam("FechaInicio") Date nuevoFechaInicio,
-                                   @RequestParam("FechaFIn") Date nuevoFechaFin,
-                                   @RequestParam("Logo")String NuevoLogo){
+ public educacion editTrabajos (@PathVariable Long id,
+                                        @RequestBody educacion nuevoEducacion) {
     educacion edu = interEducacion.findEducacion(id);
+
+    edu.setNombreEducacion(nuevoEducacion.getNombreEducacion());
+    edu.setTitulo(nuevoEducacion.getTitulo());
+    edu.setFechaInicio(nuevoEducacion.getFechaInicio());
+    edu.setFechaFin(nuevoEducacion.getFechaFin());
+    edu.setTipo_Educacion(nuevoEducacion.getTipo_Educacion());
+    edu.setLogo(nuevoEducacion.getLogo());
+
+    return interEducacion.save(edu);
     
-    edu.setNombreEducacion(nuevoNombreEducacion);
-    edu.setTitulo(nuevoTitulo);
-    edu.setFechaInicio(nuevoFechaInicio);
-    edu.setFechaFin(nuevoFechaFin);
-    edu.setLogo(NuevoLogo);
-        
-    return edu;
-    }
-    
+ }
 }

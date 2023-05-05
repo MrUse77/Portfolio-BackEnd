@@ -24,8 +24,9 @@ public class proyectos {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String NombreProyecto;
-    private Date Fecha_Lanz;
     private String Descripcion;
+    private Date Fecha_Lanz;
+    private String Url;
     private String Logo;
     
 }

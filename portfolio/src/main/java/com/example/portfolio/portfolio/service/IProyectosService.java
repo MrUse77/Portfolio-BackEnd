@@ -17,4 +17,5 @@ public interface IProyectosService {
     public void saveProyectos(proyectos pro);
     public void deleteProyectos(Long id);
     public proyectos findProyectos(Long id);
+    public proyectos save(proyectos pro);
 }

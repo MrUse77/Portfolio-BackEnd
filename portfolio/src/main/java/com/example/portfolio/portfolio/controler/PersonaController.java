@@ -7,6 +7,7 @@ package com.example.portfolio.portfolio.controler;
 import com.example.portfolio.portfolio.modelo.persona;
 import com.example.portfolio.portfolio.service.IPersonaService;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,13 +39,13 @@ public class PersonaController {
     }
     
     @DeleteMapping("/personas/borrar/{id}")
-    public String deletePersona(@PathVariable Long id){
+    public String deletePersona(@PathVariable UUID id){
         interPersona.deletePersona(id);
         return "la persona fue eliminada correctamente";
     }
     
     @PutMapping("/personas/editar/{id}")
-    public persona editPersona (@PathVariable Long id,
+    public persona editPersona (@PathVariable UUID id,
                                 @RequestParam("user") String nuevoUser,
                                 @RequestParam("mail") String nuevoMail,
                                 @RequestParam("password")String nuevoPassword){

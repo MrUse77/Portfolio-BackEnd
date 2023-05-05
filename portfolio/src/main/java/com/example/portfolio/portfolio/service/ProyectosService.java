@@ -43,4 +43,9 @@ public class ProyectosService implements IProyectosService{
         return pro;
     }
     
+    @Override
+    public proyectos save(proyectos pro) {
+    return ProyectRepo.save(pro);
+}
+    
 }

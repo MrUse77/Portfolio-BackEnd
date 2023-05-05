@@ -47,16 +47,17 @@ public class ProyectoController {
     }
     
     @PutMapping("/proyectos/editar/{id}")
-    public proyectos editPersona (@PathVariable Long id,
-                                @RequestParam("NombreProyecto") String nuevoNombreProyecto,
-                                @RequestParam("Fecha_Lanz") Date nuevoFecha_Lanz,
-                                @RequestParam("Descripcion")String nuevaDescripcion){
+ public proyectos editTrabajos (@PathVariable Long id,
+                                        @RequestBody proyectos nuevoProyecto) {
     proyectos pro = interProyecto.findProyectos(id);
+
+    pro.setNombreProyecto(nuevoProyecto.getNombreProyecto());
+    pro.setDescripcion(nuevoProyecto.getDescripcion());
+    pro.setFecha_Lanz(nuevoProyecto.getFecha_Lanz());
+    pro.setUrl(nuevoProyecto.getUrl());
+    pro.setLogo(nuevoProyecto.getLogo());
+
+    return interProyecto.save(pro);
     
-    pro.setNombreProyecto(nuevoNombreProyecto);
-    pro.setFecha_Lanz(nuevoFecha_Lanz);
-    pro.setDescripcion(nuevaDescripcion);
-    
-    return pro;
-    }
+ }
 }

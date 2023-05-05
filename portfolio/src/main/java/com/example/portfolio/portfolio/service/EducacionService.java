@@ -42,4 +42,9 @@ public class EducacionService implements IEducacionService{
         return edu;
     }
     
+    @Override
+    public educacion save(educacion edu) {
+    return EducacionRepo.save(edu);
+}
+    
 }

@@ -8,9 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.sql.Date;
-import java.util.LinkedList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,11 +32,12 @@ public class experiencialaboral {
     private String Logo;
     @ManyToOne
     persona Persona;
-    @ManyToOne
-    tipo_trabajo Tipo_Trabajo;
+@ManyToOne
+@JoinColumn(name = "tipo_trabajo_id")
+private tipo_trabajo tipoTrabajo;
 
 
-
+    
     
     
 }

@@ -4,20 +4,14 @@
  */
 package com.example.portfolio.portfolio.service;
 
-import com.example.portfolio.portfolio.modelo.persona;
+import com.example.portfolio.portfolio.modelo.tipo_educacion;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
  * @author agust
  */
-public interface IPersonaService {
-    
-    public List<persona> getPersonas();
-    public void savePersona(persona pers);
-    public void deletePersona(UUID id);
-    public persona findPersona(UUID id);
-    
-    
+public interface ITipoEducacionService {
+    public List<tipo_educacion> getTipoEducacion();
+    public void saveTipoEducacion(tipo_educacion tipE);
 }

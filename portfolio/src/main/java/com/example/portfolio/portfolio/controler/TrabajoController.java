@@ -6,7 +6,6 @@ package com.example.portfolio.portfolio.controler;
 
 import com.example.portfolio.portfolio.modelo.experiencialaboral;
 import com.example.portfolio.portfolio.service.IExpLaboralService;
-import java.sql.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -46,23 +44,18 @@ public class TrabajoController {
         return "El trabajo fue eliminado correctamente";
     }
     
-    @PutMapping("/trabajos/editar/{id}")
-    public experiencialaboral editTrabajos (@PathVariable Long id,
-                                @RequestParam("NombreEmpresa") String nuevoNombre,
-                                @RequestParam("Descripcion") String nuevaDescripcion,
-                                @RequestParam("FechaInicio")Date nuevaFechaInicio,
-                                @RequestParam("FechaFIn")Date nuevaFechaFin,
-                                @RequestParam("Logo")String nuevoLogo
-                                ){
+@PutMapping("/trabajos/editar/{id}")
+public experiencialaboral editTrabajos (@PathVariable Long id,
+                                        @RequestBody experiencialaboral nuevoTrabajo) {
     experiencialaboral trab = interTrabajo.findTrabajos(id);
+
+    trab.setNombreEmpresa(nuevoTrabajo.getNombreEmpresa());
+    trab.setDescripcion(nuevoTrabajo.getDescripcion());
+    trab.setFechaInicio(nuevoTrabajo.getFechaInicio());
+    trab.setFechaFin(nuevoTrabajo.getFechaFin());
+     trab.setTipoTrabajo(nuevoTrabajo.getTipoTrabajo());
+    trab.setLogo(nuevoTrabajo.getLogo());
+    return interTrabajo.save(trab);
     
-    trab.setNombreEmpresa(nuevoNombre);
-    trab.setDescripcion(nuevaDescripcion);
-    trab.setFechaInicio(nuevaFechaInicio);
-    trab.setFechaFin(nuevaFechaFin);
-    trab.setLogo(nuevoLogo);
-    
-    
-    return trab;
-    }
 }
+    }

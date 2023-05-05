@@ -15,5 +15,6 @@ public interface IExpLaboralService {
     public List<experiencialaboral> getTrabajos();
     public void saveTrabajos(experiencialaboral trab);
     public void deleteTrabajos(Long id);
-   public experiencialaboral findTrabajos(Long id);
+    public experiencialaboral findTrabajos(Long id);
+    public experiencialaboral save(experiencialaboral trab);
 }

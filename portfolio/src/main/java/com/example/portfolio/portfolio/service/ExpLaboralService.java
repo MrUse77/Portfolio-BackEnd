@@ -41,6 +41,10 @@ public class ExpLaboralService implements IExpLaboralService{
         experiencialaboral trab = TrabRepo.findById(id).orElse(null);
         return trab;
     }
+   @Override
+    public experiencialaboral save(experiencialaboral trab) {
+    return TrabRepo.save(trab);
+}
 
     
 }

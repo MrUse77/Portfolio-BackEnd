@@ -8,6 +8,7 @@ import com.example.portfolio.portfolio.interfaces.InterfazPersona;
 
 import com.example.portfolio.portfolio.modelo.persona;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,11 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public void deletePersona(Long id) {
+    public void deletePersona(UUID id) {
         PersoRepo.deleteById(id);
     }
 @Override
-    public persona findPersona(Long id) {
+    public persona findPersona(UUID id) {
         persona pers = PersoRepo.findById(id).orElse(null);
         return pers;
     }

@@ -4,9 +4,8 @@
  */
 package com.example.portfolio.portfolio.controler;
 
-import com.example.portfolio.portfolio.modelo.tipo_trabajo;
-
-import com.example.portfolio.portfolio.service.ITipoTrabajoService;
+import com.example.portfolio.portfolio.modelo.tipo_educacion;
+import com.example.portfolio.portfolio.service.ITipoEducacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,20 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin(origins="http://localhost:4200", maxAge=3600)
 @RestController
-public class TipoTrabajoController {
+public class TipoEducacionController {
+        @Autowired
+    private ITipoEducacionService interTipoEducacion;
     
-    @Autowired
-    private ITipoTrabajoService interTipoTrabajos;
-    
-    @GetMapping("/tipotrabajo/traer")
-    public List<tipo_trabajo> getTipoTrabajos(){
-     return interTipoTrabajos.getTipoTrabajos();
+    @GetMapping("/tipoeducacion/traer")
+    public List<tipo_educacion> getTipoEducacion(){
+     return interTipoEducacion.getTipoEducacion();
     }
     
-     @PostMapping("/tipotrabajo/crear")
-     public String createTipoTrabajo(@RequestBody tipo_trabajo tipT){
-         interTipoTrabajos.saveTipoTrabajos(tipT);
+     @PostMapping("/tipoeducacion/crear")
+     public String createTipoTrabajo(@RequestBody tipo_educacion tipE){
+         interTipoEducacion.saveTipoEducacion(tipE);
          return "El tipo de trabajo fue creado correctamente";
      }
-    
 }
