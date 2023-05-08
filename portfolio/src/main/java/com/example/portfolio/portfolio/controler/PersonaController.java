@@ -4,11 +4,27 @@
  */
 package com.example.portfolio.portfolio.controler;
 
+import com.example.portfolio.portfolio.enums.AuthorityName;
+import static com.example.portfolio.portfolio.enums.AuthorityName.PUBLIC;
+import com.example.portfolio.portfolio.interfaces.InterfazAuthority;
+import com.example.portfolio.portfolio.interfaces.InterfazPersona;
+import com.example.portfolio.portfolio.modelo.authority;
+
 import com.example.portfolio.portfolio.modelo.persona;
+
 import com.example.portfolio.portfolio.service.IPersonaService;
+import jakarta.validation.Valid;
+
 import java.util.List;
-import java.util.UUID;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,29 +39,46 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins="http://localhost:4200", maxAge=3600)
 @RestController
 public class PersonaController {
-    
+
+   
+    @Autowired
+    private InterfazPersona personaRepo;
     @Autowired
     private IPersonaService interPersona;
+        @Autowired
+    private InterfazAuthority interAuth;
     
     @GetMapping("/personas/traer")
     public List<persona> getPersonas(){
+       
         return interPersona.getPersonas();
     }
     
     @PostMapping("/personas/crear")
-    public String createStudent(@RequestBody persona pers){
-        interPersona.savePersona(pers);
-        return "La persona fue creada correctamente";
-    }
+public String registerUser(@Valid @RequestBody persona usuario) {   
+ PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    // Check if user already exist
+
+    // Create new user's account
+    persona user = new persona(usuario.getUser(), 
+                               usuario.getMail(), 
+                               passwordEncoder.encode(usuario.getPassword()), 
+                               List.of(interAuth.findByName(AuthorityName.PUBLIC).get()));
+    
+    personaRepo.save(user);
+
+    return "User registered successfully";
+    }   
     
     @DeleteMapping("/personas/borrar/{id}")
-    public String deletePersona(@PathVariable UUID id){
+    public String deletePersona(@PathVariable Long id){
         interPersona.deletePersona(id);
         return "la persona fue eliminada correctamente";
     }
     
     @PutMapping("/personas/editar/{id}")
-    public persona editPersona (@PathVariable UUID id,
+    public persona editPersona (@PathVariable Long id,
                                 @RequestParam("user") String nuevoUser,
                                 @RequestParam("mail") String nuevoMail,
                                 @RequestParam("password")String nuevoPassword){
@@ -57,4 +90,5 @@ public class PersonaController {
     
     return pers;
     }
+
 }

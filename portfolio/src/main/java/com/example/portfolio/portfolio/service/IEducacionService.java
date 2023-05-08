@@ -8,8 +8,9 @@ import com.example.portfolio.portfolio.modelo.educacion;
 import java.util.List;
 
 
+
 public interface IEducacionService {
-    
+
     public List<educacion>GetEducacion();
     public void saveEducacion(educacion edu);
     public void deleteEducacion(Long id);

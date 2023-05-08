@@ -4,9 +4,10 @@
  */
 package com.example.portfolio.portfolio.service;
 
+
+import com.example.portfolio.portfolio.modelo.authority;
 import com.example.portfolio.portfolio.modelo.persona;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
@@ -15,9 +16,11 @@ import java.util.UUID;
 public interface IPersonaService {
     
     public List<persona> getPersonas();
+    public List<authority> getAuthority();
     public void savePersona(persona pers);
-    public void deletePersona(UUID id);
-    public persona findPersona(UUID id);
+    public void deletePersona(Long id);
+    public persona findPersona(Long id);
+
     
     
 }
