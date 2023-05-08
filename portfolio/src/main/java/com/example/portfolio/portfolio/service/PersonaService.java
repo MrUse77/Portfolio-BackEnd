@@ -4,7 +4,9 @@
  */
 package com.example.portfolio.portfolio.service;
 
+import com.example.portfolio.portfolio.interfaces.InterfazAuthority;
 import com.example.portfolio.portfolio.interfaces.InterfazPersona;
+import com.example.portfolio.portfolio.modelo.authority;
 
 import com.example.portfolio.portfolio.modelo.persona;
 import java.util.List;
@@ -21,6 +23,8 @@ public class PersonaService implements IPersonaService{
     
     @Autowired
     private InterfazPersona PersoRepo;
+    @Autowired
+    private InterfazAuthority AuthRepo;
 
     @Override
     public List<persona> getPersonas() {
@@ -34,13 +38,19 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public void deletePersona(UUID id) {
+    public void deletePersona(Long id) {
         PersoRepo.deleteById(id);
     }
 @Override
-    public persona findPersona(UUID id) {
+    public persona findPersona(Long id) {
         persona pers = PersoRepo.findById(id).orElse(null);
         return pers;
+    }
+
+    @Override
+    public List<authority> getAuthority() {
+        List<authority> listaAuth = AuthRepo.findAll();
+        return listaAuth;
     }
 
 

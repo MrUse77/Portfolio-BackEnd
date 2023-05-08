@@ -20,6 +20,7 @@ import lombok.Setter;
 @Getter @Setter
 @Entity
 public class educacion {
+
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -28,7 +29,7 @@ public class educacion {
     private String Titulo;
     private Date FechaInicio;
     private Date FechaFin;
-    private String Logo;
+    private String logo;
     @ManyToOne
     persona Persona;
     @ManyToOne
