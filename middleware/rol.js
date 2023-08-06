@@ -6,7 +6,7 @@ const checkRol = (roles) => async(req, res, next) => {
     const token = req.headers.authorization.split(" ").pop();
     const tokenData = await verifyToken(token);
     const userData = await userModel.findById(tokenData._id);
-    if (userData.role=='admin') {
+    if (userData.roles=='admin') {
       next();
     } else {
       handleErrorResponse(res, "NOT_ROL", 409);
