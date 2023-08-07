@@ -1,8 +1,9 @@
-const express = require ("express")
-const storageRouter = express.Router()
+const express = require("express");
+const storageRouter = express.Router();
 const upload = require("../utils/handleStorage");
-const { createFile } = require("../controllers/storage");
+const { createFile, generatePublicUrl } = require("../controllers/storage");
 
-storageRouter.post("/create",upload.single("myfile"), createFile)
+storageRouter.post("/create", upload.single("myfile"), createFile);
+storageRouter.get("/get", generatePublicUrl);
 
 module.exports = storageRouter;
