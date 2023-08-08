@@ -13,7 +13,7 @@ const ProyectosScheme = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    mediaId: { type: mongoose.Types.ObjectId, ref: "media" },
+    mediaId: { type: String, ref: "media" },
     link: {
       type: String,
     },

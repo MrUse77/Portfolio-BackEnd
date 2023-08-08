@@ -16,11 +16,11 @@ const EducacionScheme = new mongoose.Schema(
     },
     dateEnd: {
       type: Date,
-      //required: [true, "Date is required"],
+      required: false,
     },
     mediaId: { type: String, ref: "media" },
     Type: {
-      type: ["Secundaria", "Universidad", "Cursos", "Otro"],
+      type: ["Secundaria", "Carrera universitaria", "Cursos", "Otro"],
       //required: [true, "Type is required"],
     },
   },

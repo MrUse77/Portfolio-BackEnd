@@ -2,6 +2,8 @@ const path = require("path");
 const fs = require("fs");
 const { google } = require("googleapis");
 const { file } = require("googleapis/build/src/apis/file");
+const { storageModel } = require("../models");
+
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
@@ -24,26 +26,22 @@ const createFile = async (req, res) => {
       parents: [fileId],
     },
   });
-  res.send(data);
+  console.log(data.id);
+  const img = storageModel.create({
+    url: "https://drive.google.com/uc?export=view&id=" + data.id,
+    filename: data.name,
+  });
+  res.send({ img });
 };
 const drive = google.drive({
   version: "v3",
   auth: oauth2Client,
 });
-async function generatePublicUrl() {
+async function generatePublicUrl(req, res) {
   try {
-    await drive.permissions.create({
-      fileId: fileId,
-      requestBody: {
-        role: "reader",
-        type: "anyone",
-      },
-    });
-    const result = await drive.files.get({
-      fileId: fileId,
-      fields: "webViewLink, webContentLink",
-    });
-    console.log(result.data);
+    const img = await storageModel.find();
+    console.log(img);
+    res.send({ img });
   } catch (error) {
     console.log(error.message);
   }

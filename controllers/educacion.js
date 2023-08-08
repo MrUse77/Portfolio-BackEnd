@@ -3,12 +3,16 @@ const { educacionModel } = require("../models");
 const createEducacion = async (req, res) => {
   try {
     const dateInit = new Date(req.body.dateInit);
-    const dateEnd = new Date(req.body.dateEnd);
+    const dateEnd = () => {
+      if (req.body.dateEnd) {
+        new Date(req.body.dateEnd);
+      }
+    };
     const nuevaEducacion = educacionModel.create({
       nameInstitution: req.body.nameInstitution,
       Title: req.body.Title,
       dateInit: dateInit,
-      dateEnd: dateEnd,
+      dateEnd: dateEnd(),
       mediaId: req.body.mediaId,
       Type: req.body.Type,
     });
