@@ -1,7 +1,5 @@
-const path = require("path");
 const fs = require("fs");
 const { google } = require("googleapis");
-const { file } = require("googleapis/build/src/apis/file");
 const { storageModel } = require("../models");
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -40,7 +38,6 @@ const drive = google.drive({
 async function generatePublicUrl(req, res) {
   try {
     const img = await storageModel.find();
-    console.log(img);
     res.send({ img });
   } catch (error) {
     console.log(error.message);
