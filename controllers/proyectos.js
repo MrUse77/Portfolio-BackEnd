@@ -14,6 +14,7 @@ const createProyectos = async (req, res) => {
       mediaId: req.body.mediaId,
       link: req.body.link,
     });
+    await createProyectos.save();
     res.send({ createProyectos });
   } catch (e) {
     console.log(e);
