@@ -1,8 +1,7 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 const tokenSign = async (user) => {
-  console.log(user)
+  console.log(user);
   return jwt.sign(
     {
       _id: user._id,

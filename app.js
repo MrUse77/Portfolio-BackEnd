@@ -8,13 +8,13 @@ const educacionRouter = require("./routes/educacion");
 const proyectosRouter = require("./routes/proyectos");
 const experienciaRouter = require("./routes/experiencia");
 const storageRouter = require("./routes/storage");
-require("dotenv").config();
 
 app.use(
   cors({
-    origin: "*",
+    origin: proccess.env.CORS_ORIGIN,
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type, Authorization",
+    credentials: true,
   })
 );
 app.use(express.json());

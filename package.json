@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm i",
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
+    "build": "bun i",
+    "start": "node ./app.js --env-file .env",
+    "dev": "node --watch ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,18 +15,12 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "2.8.5",
-    "dotenv": "^16.1.4",
     "express": "4.18.2",
     "express-async-handler": "^1.2.0",
     "express-validator": "^7.0.1",
-    "firebase": "^8.6.8",
-    "googleapis": "^123.0.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.11.1",
-    "mongoose-delete": "^0.5.4",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "3.3.5",
-    "sequelize": "^6.32.0",
-    "stream": "^0.0.2"
+    "sequelize": "^6.32.0"
   }
 }
