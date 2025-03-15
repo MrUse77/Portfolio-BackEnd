@@ -2,7 +2,7 @@
   "name": "api-rest-mongodb-y-express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "bun i",
     "start": "node ./app.js --env-file .env",
@@ -20,7 +20,6 @@
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.11.1",
-    "multer": "^1.4.5-lts.1",
-    "sequelize": "^6.32.0"
+    "multer": "^1.4.5-lts.1"
   }
 }
