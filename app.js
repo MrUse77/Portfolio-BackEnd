@@ -10,7 +10,7 @@ const experienciaRouter = require("./routes/experiencia");
 
 app.use(
   cors({
-    origin: proccess.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN,
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type, Authorization",
     credentials: true,
